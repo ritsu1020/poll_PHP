@@ -14,7 +14,7 @@ class Poll {
       $this->_db = new \PDO(DSN, DB_USERNAME, DB_PASSWORD);
       $this->_db->setAttribute(\PDO::ATTR_ERRORMODE, \PDO::ERRMODE_EXCEPTION);
     } catch (\PDOException $e) {
-      throw new \Exception('Failed to connect DB!');
+      throw new \Exception('Failed to connect DB');
     }
   }
 }
