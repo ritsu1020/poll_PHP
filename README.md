@@ -21,8 +21,12 @@ DB設計
 
 >use dotinsatall_poll_php
 
->creata table answers (
+> drop table if exists answers;
+creata table answers (
 id int not null auto_increment primary_key,
-answers int not null,
+answer int not null,
 created datatime
 );
+
+$thisの意味
+> このクラスの中の～…　メソッドとプロパティの前に記述する
