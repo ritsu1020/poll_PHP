@@ -71,12 +71,20 @@ class Poll {
 
   public function save() {
     $sql = 'insert into answers
-            (answer, created)
-            values (:answer, now())';
+            (answer, created, remote_addr, user_agent, answer_date)
+            values (:answer, now(), :remote_addr, :user_agent, now())';
     $stmt = $this->_db->prepare($sql);
-    $stmt->bindValue(':answer', (int)$_POST['answer'], PDO::PARAM_INT);
-    $stmt->execute();
-    exit;
+    $stmt->bindValue(':answer', (int)$_POST['answer'], \PDO::PARAM_INT);
+    $stmt->bindValue(':remote_addr', $_SERVER['REMOTE_ADDR'], \PDO::PARAM_STR);
+    $stmt->bindValue(':user_agent', $_SERVER['HTTP_USER_AGENT'], \PDO::PARAM_STR);
+
+    try {
+      $stmt->execute();
+    } catch (\PDOException $e) {
+      throw new \Exception('No more vote for Today!');
+    }
+
+    // exit;
   }
 
   private function _connectDB() {
