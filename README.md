@@ -33,4 +33,4 @@ unique unique_answer(remote_addr, user_agent, answer_date)
 );
 
 $thisの意味
-> このクラスの中の～…　メソッドとプロパティの前に記述する
+> このクラスの中の～… クラスの中のメソッドとプロパティの前に記述する
